@@ -2,18 +2,17 @@
 
 namespace Algorithm
 {
-    public class AgeComparison : IEquatable<AgeComparison>
+    public class BirthdayComparisonPair : IEquatable<BirthdayComparisonPair>
     {
         public Person YoungestPerson { get; private set; }
         public Person OldestPerson { get; private set; }
         public TimeSpan AgeDifference { get; private set; }
 
-        public AgeComparison()
+        public BirthdayComparisonPair()
         {
-            
         }
 
-        public AgeComparison(Person firstPerson, Person secondPerson)
+        public BirthdayComparisonPair(Person firstPerson, Person secondPerson)
         {
             if (firstPerson.BirthDate < secondPerson.BirthDate)
             {
@@ -29,9 +28,12 @@ namespace Algorithm
             AgeDifference = OldestPerson.BirthDate - YoungestPerson.BirthDate;
         }
 
-        public bool Equals(AgeComparison other)
+        public bool Equals(BirthdayComparisonPair other)
         {
-            if (other == null) return false;
+            if (other == null)
+            {
+                return false;
+            }
 
             return OldestPerson.Equals(other.OldestPerson) && YoungestPerson.Equals(other.YoungestPerson);
         }

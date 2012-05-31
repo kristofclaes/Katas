@@ -10,9 +10,9 @@ namespace Algorithm.Test
         public void Returns_Empty_Results_When_Given_Empty_List()
         {
             var list = new List<Person>();
-            var finder = new AgeComparer(list);
+            var finder = new BirthdayComparer(list);
 
-            var result = finder.GetAgeComparison(AgeComparisonType.ClosestBirthdays);
+            var result = finder.FindBirthdayRange(Range.ClosestTogether);
 
             Assert.Null(result.YoungestPerson);
             Assert.Null(result.OldestPerson);
@@ -22,9 +22,9 @@ namespace Algorithm.Test
         public void Returns_Empty_Results_When_Given_One_Person()
         {
             var list = new List<Person>() { sue };
-            var finder = new AgeComparer(list);
+            var finder = new BirthdayComparer(list);
 
-            var result = finder.GetAgeComparison(AgeComparisonType.ClosestBirthdays);
+            var result = finder.FindBirthdayRange(Range.ClosestTogether);
 
             Assert.Null(result.YoungestPerson);
             Assert.Null(result.OldestPerson);
@@ -34,9 +34,9 @@ namespace Algorithm.Test
         public void Returns_Closest_Two_For_Two_People()
         {
             var list = new List<Person>() { sue, greg };
-            var finder = new AgeComparer(list);
+            var finder = new BirthdayComparer(list);
 
-            var result = finder.GetAgeComparison(AgeComparisonType.ClosestBirthdays);
+            var result = finder.FindBirthdayRange(Range.ClosestTogether);
 
             Assert.Same(sue, result.YoungestPerson);
             Assert.Same(greg, result.OldestPerson);
@@ -46,9 +46,9 @@ namespace Algorithm.Test
         public void Returns_Furthest_Two_For_Two_People()
         {
             var list = new List<Person>() { greg, mike };
-            var finder = new AgeComparer(list);
+            var finder = new BirthdayComparer(list);
 
-            var result = finder.GetAgeComparison(AgeComparisonType.FurthestBithdays);
+            var result = finder.FindBirthdayRange(Range.FurthestApart);
 
             Assert.Same(greg, result.YoungestPerson);
             Assert.Same(mike, result.OldestPerson);
@@ -58,9 +58,9 @@ namespace Algorithm.Test
         public void Returns_Furthest_Two_For_Four_People()
         {
             var list = new List<Person>() { greg, mike, sarah, sue };
-            var finder = new AgeComparer(list);
+            var finder = new BirthdayComparer(list);
 
-            var result = finder.GetAgeComparison(AgeComparisonType.FurthestBithdays);
+            var result = finder.FindBirthdayRange(Range.FurthestApart);
 
             Assert.Same(sue, result.YoungestPerson);
             Assert.Same(sarah, result.OldestPerson);
@@ -70,9 +70,9 @@ namespace Algorithm.Test
         public void Returns_Closest_Two_For_Four_People()
         {
             var list = new List<Person>() { greg, mike, sarah, sue };
-            var finder = new AgeComparer(list);
+            var finder = new BirthdayComparer(list);
 
-            var result = finder.GetAgeComparison(AgeComparisonType.ClosestBirthdays);
+            var result = finder.FindBirthdayRange(Range.ClosestTogether);
 
             Assert.Same(sue, result.YoungestPerson);
             Assert.Same(greg, result.OldestPerson);
